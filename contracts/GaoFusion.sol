@@ -1,33 +1,50 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.4.25;
 
-import "./GaoOwnership.sol";
+import "./GaoFactory.sol";
 
-contract GaoFusion is GaoOwnership {
+contract GaoFusion is GaoFactory {
+    uint randNonce = 0;
+    uint fuseFee = 0.01 ether;
 
     event Fusion(address owner, uint256 gaoId);
 
-    function random() private view returns (uint16) {
-        return uint16(uint256(keccak256(block.timestamp, block.difficulty))%101);
+
+    modifier onlyOwnerOf(uint _gaoId) {
+    require(msg.sender == gaoIndexToOwner[_gaoId]);
+    _;
     }
 
-    function _genarateDna(uint16 bonding) internal returns (uint16[4]){
-        uint16 head = random();
-        uint16 wings = random();
-        uint16 hands = random();
-        uint16 legs = random();
-        uint16[4] _dna = [head, wings, hands, legs];
+    // Create random number base on now, sender address, and an arbitary variable
+    function randMod(uint _modulus) internal returns(uint) {
+        randNonce = randNonce.add(1);
+        return uint8(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % _modulus;
+    }
+
+    function _generateDna() private returns (uint8[4]) {
+        // Get 4 last number to use for body parts code
+        uint8 _rand = uint8(randMod(10000));
+        uint8 _head = _rand % 10;
+        uint8 _wing = uint8((_rand / 10) % 10);
+        uint8 _hands = uint8((_rand / 100) % 10);
+        uint8 _legs = uint8((_rand / 1000) % 10);
+        uint8[4] memory _dna;
+        _dna[0] = _head;
+        _dna[1] = _wing;
+        _dna[2] = _hands;
+        _dna[3] = _legs;
         return _dna;
     }
 
-    function _genarateAbility(uint16 bonding) internal returns (uint16[3]){
-        uint16 fly = random();
-        uint16 swim = random();
-        uint16 run = random();
-        uint16[3] _ability = [fly, swim, run];
+    function _genarateAbility() internal returns (uint16[3]){
+        uint8 _rand = uint8(randMod(1000));
+        uint16 _fly = _rand % 10;
+        uint16 _swim = uint16((_rand / 10) % 10);
+        uint16 _run = uint16((_rand / 100) % 10);
+        uint16[3] memory _ability = [uint16(_fly), _swim, _run];
         return _ability;
     }
 
-    function _isReadyToFuse(Gao _gao) internal view returns (bool) {
+    function _isReadyToFuse(Gao _gao) internal pure returns (bool) {
         return (!_gao.mature) && (_gao.bonding > 0);
     }
 
@@ -39,10 +56,17 @@ contract GaoFusion is GaoOwnership {
 
     function _fuseGao(Gao _gao) internal {
         _gao.mature = true;
+        _gao.dna = _generateDna();
+        _gao.ability = _genarateAbility();
     }
 
-    function fuseGao (uint256 _gaoId) external {
-        require(_gaoId > 0);
+    function fuseGao (uint256 _gaoId) external payable {
+        require(msg.value == fuseFee);
+        require(isReadyToFuse(_gaoId));
+        address _owner = gaoIndexToOwner[_gaoId];
+        emit Fusion(_owner, _gaoId);
         _fuseGao(gaos[_gaoId]);
     }
+
+
 }

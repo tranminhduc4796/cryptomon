@@ -1,6 +1,6 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.4.25;
 
-import "./Ownable.sol";
+import "./Migrations.sol";
 import "./safemath.sol";
 
 contract GaoFactory is Migrations {
@@ -11,18 +11,18 @@ contract GaoFactory is Migrations {
 
     event NewGao(address owner, uint256 gaoID, uint16 gao_type, uint origin, bool mature, uint64 birthTime, uint16 bonding, uint16 level);
 
-    event Transfer(address from, address to, uint256 tokenId);
+    event Transfer(address _from, address _to, uint256 tokenId);
 
     struct Gao {
         bool mature;
         uint origin; // {1:'phoenix', 2:'bat'}
         uint64 birthTime;
-        uint32 eventID;
+        uint32 eventId;
         uint16 bonding; // Max 100
         uint16 level; // Max 100
         uint16 gao_type; // common, rare, legend
-        uint16[4] dna; // head, wings, hands, legs
         uint16[3] ability; // [fly, swim, run]
+        uint8[4] dna; // head, wing, hands, legs
     }
 
     Gao[] public gaos;
@@ -53,11 +53,11 @@ contract GaoFactory is Migrations {
             mature: false,
             origin: _origin,
             birthTime: uint64(now),
-            eventID: _eventId,
+            eventId: _eventId,
             bonding: 0,
             level: 1,
             gao_type: _gao_type,
-            dna: [uint16(0), uint16(0), uint16(0), uint16(0)],
+            dna: [uint8(0), uint8(0), uint8(0), uint8(0)],
             ability: [uint16(0), uint16(0), uint16(0)]
             });
         uint256 newGaoId = gaos.push(_gao) - 1;
@@ -70,13 +70,5 @@ contract GaoFactory is Migrations {
 
         _transfer(address(0), _owner, newGaoId);
         return newGaoId;
-    }
-
-    struct GaoEvents {
-        uint16[3] requirements; //requirements about abiblity
-        uint64 startTime;
-        uint64 endTime;
-        uint16 kind;
-        uint joinFee;
     }
 }
