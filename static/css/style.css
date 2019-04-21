@@ -581,16 +581,16 @@ nav {
 
 .list__card {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .mycard {
   position: relative;
   display: flex;
-  width: 31.25rem;
+  width: 500px;
   background-color: aliceblue;
   height: 12.5rem;
-  margin: 20px 0px;
+  margin: 20px 20px;
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
     0 5px 15px 0 rgba(0, 0, 0, 0.08);
 }
@@ -626,6 +626,10 @@ nav {
   background-color: orange;
   color: white;
   font-weight: bold;
+}
+
+.ava {
+  transform: scale(0.3);
 }
 
 .legend {
