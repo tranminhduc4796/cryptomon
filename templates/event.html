@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Events</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</head>
+
+<body class="body">
+    <header>
+        <nav id='cssmenu'>
+            <div id="head-mobile"></div>
+            <div class="button"></div>
+            <ul>
+                <li><a href='./user.html'>HOME</a></li>
+                <li class='active'><a href='./event.html'>EVENT</a></li>
+                <li><a href='./shopPet.html'>SHOP</a>
+                    <ul>
+                        <li><a href='./shopPet.html'>PET</a>
+                        </li>
+                        <li><a href='./shopAvatar.html'>AVATAR</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container vertical-center">
+        <h1>EVENTS</h1>
+        <div class="seperator"></div>
+        <div class="media bg-white border">
+            <img class="d-flex mr-3" src="../static/IMG/Event_data/55545315_2558578130836489_3057768938088693760_n.jpg"
+                width="220" height="220">
+            <div class="media-body">
+                <div style="display: flex; justify-content: space-between">
+                    <h2 class="mt-0">Event Name</h2>
+                    <div style="align-self: center; margin-right: 10px; font-size: 20px">
+                        <i class="fab fa-ethereum"></i>
+                        <b>1</b>
+                    </div>
+                </div>
+                <hr>
+                <b>Time remaining:</b>
+                <p>30 mins</p>
+                <b>Requirements:</b>
+                <p>
+                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-wind"></i>
+                    <i class="fas fa-feather-alt"></i>
+                    <i class="fas fa-fist-raised"></i>
+                </p>
+            </div>
+            <div class="category bg-danger">
+                <button type="button" class="btn btn-danger go-style" data-toggle="modal" data-target="#ModalCentered">
+                    <b style="font-size: 1.5rem">GO</b>
+                </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="ModalCentered" tabindex="-1" role="dialog" aria-labelledby="ModalCenteredLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display:flex; flex-direction:column">
+                            <h2 class="modal-title" id="ModalCenteredLabel">Event Name</h2>
+                            <p>
+                                &nbsp<i class="fas fa-fire"></i>
+                                <i class="fas fa-wind"></i>
+                                <i class="fas fa-feather-alt"></i>
+                                <i class="fas fa-fist-raised"></i>
+                            </p>
+                        </div>
+                        <div class="modal-body">
+                            <div class="avatar-section">
+                                <h3>Your Avatars:</h3>
+                                <div style="margin-top:20px;">
+                                    <img class="ava-space" src="static/ranger-red.png" width="100" height="100">
+                                    <img class="ava-space" src="static/ranger-red.png" width="100" height="100">
+                                    <img class="ava-space" src="static/ranger-red.png" width="100" height="100">
+                                    <img class="ava-space" src="static/ranger-red.png" width="100" height="100">
+                                    <img class="ava-space" src="static/ranger-red.png" width="100" height="100">
+                                    <img class="ava-space" src="static/ranger-red.png" width="100" height="100">
+                                </div>
+                            </div>
+                            <hr>
+                            <h3>Selected:</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">GO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="media bg-white border">
+            <img class="d-flex mr-3" src="../static/IMG/Event_data/52785761_1250491241758193_1580776324044161024_o.jpg"
+                width="220" height="220">
+            <div class="media-body">
+                <div style="display: flex; justify-content: space-between">
+                    <h2 class="mt-0">Event Name</h2>
+                    <div style="align-self: center; margin-right: 10px; font-size: 20px">
+                        <i class="fab fa-ethereum"></i>
+                        <b>20</b>
+                    </div>
+                </div>
+                <hr>
+                <b>Time remaining:</b>
+                <p>30 mins</p>
+                <b>Requirements:</b>
+                <p>
+                    <i class="fas fa-bolt"></i> x2
+                    <i class="fas fa-cloud"></i>
+                    <i class="fas fa-wind"></i>
+                </p>
+            </div>
+            <div class="category bg-warning"><b>GO</b></div>
+        </div>
+
+
+        <div class="media bg-white border">
+            <img class="d-flex mr-3" src="../static/IMG/Event_data/53566438_817835401914078_606457207625613312_o.jpg"
+                width="220" height="220">
+            <div class="media-body">
+                <div style="display: flex; justify-content: space-between">
+                    <h2 class="mt-0">Event Name</h2>
+                    <div style="align-self: center; margin-right: 10px; font-size: 20px">
+                        <i class="fab fa-ethereum"></i>
+                        <b>10</b>
+                    </div>
+                </div>
+                <hr>
+                <b>Time remaining:</b>
+                <p>30 mins</p>
+                <b>Requirements:</b>
+                <p>
+                    <i class="fas fa-fist-raised"></i> x3
+                </p>
+            </div>
+            <div class="category bg-primary"><b>GO</b></div>
+        </div>
+    </div>
+</body>
+
+</html>
