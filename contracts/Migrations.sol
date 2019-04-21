@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.4.25;
 
 contract Migrations {
   address public owner;
@@ -19,5 +19,16 @@ contract Migrations {
   function upgrade(address new_address) public restricted {
     Migrations upgraded = Migrations(new_address);
     upgraded.setCompleted(last_completed_migration);
+  }
+
+  modifier onlyOwner() {
+       require(msg.sender == owner);
+       _;
+   }
+
+  function transferOwnership(address newOwner) onlyOwner {
+      if (newOwner != address(0)) {
+          owner = newOwner;
+      }
   }
 }
