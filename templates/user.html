@@ -14,9 +14,27 @@
 </head>
 
 <body>
+  <header>
+    <nav id='cssmenu'>
+      <div id="head-mobile"></div>
+      <div class="button"></div>
+      <ul>
+        <li class='active'><a href='./user.html'>HOME</a></li>
+        <li><a href='./event.html'>EVENT</a></li>
+        <li><a href='./shopPet.html'>SHOP</a>
+          <ul>
+            <li><a href='./shopPet.html'>PET</a>
+            </li>
+            <li><a href='./shopAvatar.html'>AVATAR</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
   <div class="container">
     <div class="row">
-      <div class="col-10"></div>
+      <div class="col-10" style="z-index: -1;"></div>
       <div class="headTopLeft">My Pets</div>
     </div>
 
@@ -65,7 +83,7 @@
   </script>
   <script language="javascript" type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script language="javascript" type="text/javascript" src="web3.min.js"></script>
-</body>
+  <script src="../static/js/script.js"></script>
+  </body>
 
 </html>
