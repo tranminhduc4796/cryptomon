@@ -1,4 +1,4 @@
-var Adoption = artifacts.require("./GaoOwnership.sol");
+var Adoption = artifacts.require("../contracts/GaoOwnership.sol");
 module.exports = function(deployer) {
   deployer.deploy(Adoption);
 };

@@ -20,15 +20,4 @@ contract Migrations {
     Migrations upgraded = Migrations(new_address);
     upgraded.setCompleted(last_completed_migration);
   }
-
-  modifier onlyOwner() {
-       require(msg.sender == owner);
-       _;
-   }
-
-  function transferOwnership(address newOwner) onlyOwner {
-      if (newOwner != address(0)) {
-          owner = newOwner;
-      }
-  }
 }
