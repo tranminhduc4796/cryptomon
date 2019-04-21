@@ -1,6 +1,6 @@
 'use strict'
 var HDWalletProvider = require("truffle-hdwallet-provider");
-var mnemonic = 'case bitter sauce title canal cry law black imitate parrot boil scrub';
+var mnemonic = 'spoon divorce rural enlist rich lazy biology impact great hunt sign pelican';
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -25,7 +25,7 @@ module.exports = {
         "m/44'/889'/0'/0/",
       ),
       network_id: "89",
-      gas: 2000000,
+      gas: 7000000,
       gasPrice: 10000000000000,
     },
     tomomainnet: {

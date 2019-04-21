@@ -591,6 +591,8 @@ nav {
   background-color: aliceblue;
   height: 12.5rem;
   margin: 20px 0px;
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
+    0 5px 15px 0 rgba(0, 0, 0, 0.08);
 }
 
 .mycard__left {
@@ -611,6 +613,19 @@ nav {
   right: 0;
   padding: 10px 0px 10px 50px;
   z-index: 11;
+}
+
+.button-buy {
+  position: inherit;
+  bottom: 10px;
+  border: solid 1px black;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 20px;
+  right: 20px;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
 }
 
 .legend {
