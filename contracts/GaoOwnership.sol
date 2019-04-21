@@ -1,35 +1,18 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.4.25;
 
-import "./GaoFactory.sol";
+import "./GaoFusion.sol";
+import "./erc721.sol";
 
-contract ERC721 {
-    // Required methods
-    function totalSupply() public view returns (uint256 total);
-    function balanceOf(address _owner) public view returns (uint256 balance);
-    function ownerOf(uint256 _tokenId) external view returns (address owner);
-    function approve(address _to, uint256 _tokenId) external;
-    function transfer(address _to, uint256 _tokenId) external;
-    function transferFrom(address _from, address _to, uint256 _tokenId) external;
 
-    // Events
-    event Transfer(address from, address to, uint256 tokenId);
-    event Approval(address owner, address approved, uint256 tokenId);
 
-    // Optional
-    // function name() public view returns (string name);
-    // function symbol() public view returns (string symbol);
-    // function tokensOfOwner(address _owner) external view returns (uint256[] tokenIds);
-    // function tokenMetadata(uint256 _tokenId, string _preferredTransport) public view returns (string infoUrl);
 
-    // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) external view returns (bool);
-}
 
-contract GaoOwnership is GaoFactory, ERC721 {
+contract GaoOwnership is GaoFusion, ERC721 {
+
 
     /// @notice Name and symbol of the non fungible token, as defined in ERC721.
     string public constant name = "CryptoGaos";
-    string public constant symbol = "CK";
+    string public constant symbol = "CG";
 
     bytes4 constant InterfaceSignature_ERC165 =
     bytes4(keccak256('supportsInterface(bytes4)'));
@@ -86,6 +69,7 @@ contract GaoOwnership is GaoFactory, ERC721 {
     /// @notice Returns the number of Gaos owned by a specific address.
     /// @param _owner The owner address to check.
     /// @dev Required for ERC-721 compliance
+
     function balanceOf(address _owner) public view returns (uint256 count) {
         return ownershipTokenCount[_owner];
     }
@@ -111,8 +95,6 @@ contract GaoOwnership is GaoFactory, ERC721 {
         // Disallow transfers to the auction contracts to prevent accidental
         // misuse. Auction contracts should only take ownership of gaos
         // through the allow + transferFrom flow.
-        require(_to != address(saleAuction));
-        require(_to != address(siringAuction));
 
         // You can only send your own gao.
         require(_owns(msg.sender, _tokenId));
@@ -140,7 +122,7 @@ contract GaoOwnership is GaoFactory, ERC721 {
         _approve(_tokenId, _to);
 
         // Emit approval event.
-        Approval(msg.sender, _to, _tokenId);
+        emit Approval(msg.sender, _to, _tokenId);
     }
 
     /// @notice Transfer a Gao owned by another address, for which the calling address
@@ -210,7 +192,7 @@ contract GaoOwnership is GaoFactory, ERC721 {
             // sequentially up to the totalCat count.
             uint256 gaoId;
 
-            for (gaoId = 1; gaoId <= totalCats; gaoId++) {
+            for (gaoId = 1; gaoId <= totalGaos; gaoId++) {
                 if (gaoIndexToOwner[gaoId] == _owner) {
                     result[resultIndex] = gaoId;
                     resultIndex++;
@@ -221,4 +203,3 @@ contract GaoOwnership is GaoFactory, ERC721 {
         }
     }
 }
-
